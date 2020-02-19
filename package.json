@@ -1,0 +1,19 @@
+{
+    "name": "openrct2-parkmanager",
+    "version": "1.0.0",
+    "author": "Ted John",
+    "license": "MIT",
+    "repository": {
+        "url": "https://github.com/IntelOrca/OpenRCT2-ParkManager"
+    },
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "minify": "uglifyjs --compress --mangle --output ParkManager.min.js -- ParkManager.js",
+        "build-release": "npm run build && npm run minify"
+    },
+    "devDependencies": {
+        "typescript": "^3.7.5",
+        "uglify-js": "^3.8.0"
+    }
+}

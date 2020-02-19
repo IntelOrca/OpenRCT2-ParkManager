@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "lib": ["es5"],
+        "outFile": "./ParkManager.js",
+        "target": "ES5",
+        "removeComments": true
+    },
+    "files": ["ParkManager.ts"]
+}
