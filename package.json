@@ -9,7 +9,7 @@
     "scripts": {
         "build": "tsc",
         "watch": "tsc --watch",
-        "minify": "uglifyjs --compress --mangle --output ParkManager.min.js -- ParkManager.js",
+        "minify": "uglifyjs --compress --mangle --output out/ParkManager.min.js -- out/ParkManager.js",
         "build-release": "npm run build && npm run minify"
     },
     "devDependencies": {

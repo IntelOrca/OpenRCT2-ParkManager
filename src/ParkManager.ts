@@ -1,4 +1,5 @@
-/// <reference path="C:/Users/Ted/Documents/GitHub/openrct2/distribution/openrct2.d.ts" />
+/// <reference path="../lib/openrct2.d.ts" />
+/// <reference path="GoalWindow.ts" />
 
 const DEBUG = true;
 
@@ -91,7 +92,7 @@ function InitialiseUi() {
     }
 
     ui.registerMenuItem("Goals", () => {
-        console.log("TODO implement goal window");
+        openGoalWindow();
     });
     trace("initialised UI");
 }
