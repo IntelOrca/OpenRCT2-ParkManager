@@ -6,6 +6,7 @@ abstract class Goal {
     reward: number;
 
     abstract hasCompleted(): boolean;
+    abstract getDetails(): string;
 }
 
 class RideTypeGoal extends Goal {
@@ -24,5 +25,9 @@ class RideTypeGoal extends Goal {
             }
         }
         return false;
+    }
+
+    getDetails(): string {
+        return "Build at least one Merry-Go-Round which is operational.";
     }
 }

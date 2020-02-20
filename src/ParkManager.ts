@@ -88,6 +88,7 @@ var main = () => {
         // trace("day elapsed, current day = " + date.day);
         if (date.day == 1) {
             CheckGoal();
+            updateGoalWindow();
         }
     });
 };
