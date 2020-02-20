@@ -1,4 +1,5 @@
 /// <reference path="../lib/openrct2.d.ts" />
+/// <reference path="Goals.ts" />
 /// <reference path="GoalWindow.ts" />
 
 const DEBUG = true;
@@ -19,33 +20,6 @@ function getAllRides() {
         }
     }
     return rides;
-}
-
-type GoalType = "ride-type" | "park-rating";
-
-abstract class Goal {
-    reward: number;
-
-    abstract hasCompleted(): boolean;
-}
-
-class RideTypeGoal extends Goal {
-    rideType: number;
-
-    constructor(rideType: number) {
-        super();
-        this.rideType = rideType;
-    }
-
-    hasCompleted(): boolean {
-        let rides = getAllRides();
-        for (let ride of rides) {
-            if (ride.type == this.rideType) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
 
 var trace: (msg: string) => void;
