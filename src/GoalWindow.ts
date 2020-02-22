@@ -7,6 +7,11 @@ class GoalWindow {
         this.window = window;
     }
 
+    static get(): GoalWindow {
+        var window = ui.getWindow('goals');
+        return new GoalWindow(window);
+    }
+
     static getOrCreate(): GoalWindow {
         var window = ui.getWindow('goals');
         if (window) {
@@ -18,10 +23,11 @@ class GoalWindow {
     }
 
     private static create(): GoalWindow {
+        var ww = 300;
         var window = ui.openWindow({
             classification: 'goals',
             title: "Goals",
-            width: 200,
+            width: ww,
             height: 200,
             widgets: [
                 {
@@ -29,18 +35,18 @@ class GoalWindow {
                     name: 'label-goal',
                     x: 3,
                     y: 23,
-                    width: 100,
-                    height: 100,
+                    width: ww - 6,
+                    height: 26,
                     text: "Goal: "
                 } as LabelWidget,
                 {
                     type: 'label' as WidgetType,
                     name: 'label-time-remaining',
                     x: 3,
-                    y: 23 + 13,
-                    width: 100,
-                    height: 100,
-                    text: "Goal: "
+                    y: 23 + 26,
+                    width: ww - 6,
+                    height: 50,
+                    text: "Time remaining: "
                 }
             ],
             onClose: () => {
@@ -53,11 +59,15 @@ class GoalWindow {
     update() {
         var goal = currentGoal;
         var goalLabel = this.window.findWidget<LabelWidget>('label-goal');
-        goalLabel.text = "Goal: " + goal.getDetails();
-        
-        var daysLeft = 31 - date.day;
         var timeRemainingLabel = this.window.findWidget<LabelWidget>('label-time-remaining');
-        timeRemainingLabel.text = `${daysLeft} days left`
+        if (goal) {
+            var daysLeft = 31 - date.day;
+            goalLabel.text = `Goal:\n        ${goal.getDetails()}`;
+            timeRemainingLabel.text = `Time remaining:\n        ${daysLeft} days left`
+        } else {
+            goalLabel.text = "No goal at the moment";
+            timeRemainingLabel.text = "";
+        }
     }
 }
 
@@ -69,6 +79,10 @@ function openGoalWindow() {
 }
 
 function updateGoalWindow() {
+    trace("updating goal window...");
+    if (!goalWindow) {
+        goalWindow = GoalWindow.get();
+    }
     if (goalWindow) {
         goalWindow.update();
     }
